@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Master Chef</title>
+    <link rel="stylesheet" href="{% static 'jarvischef/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{% static 'jarvischef/img/logo.png' %}" alt="Jarvis Master Chef Logo">
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Recipes</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Ask your recipe to AI Master Chef</h1>
+                <p>Get delicious recipes tailored to your preferences.</p>
+                <form method="post" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    {{ form.recipe_message }}
+                    <button type="submit">Ask</button>
+                </form>
+            </div>
+            <div class="hero-image">
+                <img src="{% static 'jarvischef/img/hero-image.jpg' %}" alt="Hero Image">
+            </div>
+        </section>
+
+        {% if 'response' in request.session %}
+        <section class="response">
+            <h2>Response:</h2>
+            <p>{{ request.session.response }}</p>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; Jarvis Master Chef</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Master Chef</title>
+    <link rel="stylesheet" href="{% static 'jarvischef/css/style.css'%}">
+</head>
+<body>
+    <h1>Ask your recipe To AI-master Chef</h1>
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        {{ form.recipe_message }}
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if 'response' in request.session %}
+    <div>
+        <h2>Response:</h2>
+        <p>{{ request.session.response }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
+-->
